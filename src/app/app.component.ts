@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +9,12 @@ import { Component } from '@angular/core';
 export class AppComponent{
 
   title = 'generador-qr';
-
   cardTitle = 'Crea el código QR para tu clase';
-
   size = 300;
-
   qrInfo: any;
-
   selected: any;
+  isFirstButtonDisabled: boolean | undefined;
+  isSecondButtonDisabled: boolean | undefined;
 
   clases = [
     {
@@ -65,15 +63,29 @@ export class AppComponent{
       alert('Debes seleccionar una asignatura');
     } else {
       this.qrInfo = 'reg_app_cod*'+this.selected.codigo+'*'+this.selected.seccion;
+      this.changeButtonsState(true, false);
     }
   }
 
   limpiarQR() {
     this.qrInfo = undefined;
     this.selected = undefined;
+    this.changeButtonsState(true, true);
+  }
+
+  selectionChange() {
+    this.isFirstButtonDisabled = false;
+  }
+
+  ngOnInit() {
+    if (this.selected == undefined) {
+      this.changeButtonsState(true, true);
+    }
+  }
+
+  changeButtonsState(a: boolean, b: boolean) {
+    this.isFirstButtonDisabled = a;
+    this.isSecondButtonDisabled = b;
   }
 
 }
-
-
-

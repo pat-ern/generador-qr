@@ -16,7 +16,8 @@
     </div>
     <br>
     <br>
-    <mat-select placeholder = "Selecciona una asignatura" [(value)]="selected">
+    <mat-select  placeholder = "Selecciona una asignatura" [(value)]="selected" (selectionChange)="selectionChange()">
+
       <mat-option *ngFor="let c of clases" [value]="c">{{ c.nombre | titlecase}}</mat-option>
     </mat-select>
     <br>
@@ -24,12 +25,12 @@
 
     <div class="ion-text-center">
 
-      <button mat-raised-button (click)="generarQR()" color="primary">
+      <button mat-raised-button (click)="generarQR()" color="primary" [disabled]="isFirstButtonDisabled">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add_box"></mat-icon>
         Generar QR
       </button>
       &nbsp;
-      <button mat-raised-button (click)="limpiarQR()" color="accent" *ngIf="qrInfo != null">
+      <button mat-raised-button (click)="limpiarQR()" color="accent" [disabled]="isSecondButtonDisabled">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
         Limpiar QR
       </button>
