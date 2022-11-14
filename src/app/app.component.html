@@ -1,40 +1,60 @@
 <div>
 
   <mat-card style="width: 400px; height: auto; padding: 40px; margin: 20px">
-    <h1 class="ion-text-center">{{ cardTitle }}</h1>
-    <br>
-    <div class="ion-text-center">
 
-      <div *ngIf="qrInfo == null; else elseBlock">
-        <img src="assets/qr-code.png" alt="QR Code" [attr.width]="size" [attr.height]="size"/>
+
+    <mat-card-title style="color:#3440c1;">
+      {{ cardTitle }}
+    </mat-card-title>
+
+    <br>
+
+    <mat-card-subtitle>
+      {{ cardSubtitle }}
+    </mat-card-subtitle>
+
+    <br>
+
+    <mat-card-content>
+
+      <div>
+
+        <div *ngIf="qrInfo == null; else elseBlock">
+          <img src="assets/qr-code.png" alt="QR Code" [attr.width]="size" [attr.height]="size"/>
+        </div>
+        
+        <ng-template #elseBlock>
+          <qr-code [value]="qrInfo" [size]="size"></qr-code>
+        </ng-template>
+
       </div>
-      
-      <ng-template #elseBlock>
-        <qr-code [value]="qrInfo" [size]="size"></qr-code>
-      </ng-template>
 
-    </div>
-    <br>
-    <br>
-    <mat-select  placeholder = "Selecciona una asignatura" [(value)]="selected" (selectionChange)="selectionChange()">
+      <br>
+      <br>
 
-      <mat-option *ngFor="let c of clases" [value]="c">{{ c.nombre | titlecase}}</mat-option>
-    </mat-select>
-    <br>
-    <br>
+      <mat-select  placeholder = "Selecciona una asignatura" [(value)]="selected" (selectionChange)="selectionChange()">
 
-    <div class="ion-text-center">
+        <mat-option *ngFor="let c of clases" [value]="c">{{ c.nombre | titlecase}}</mat-option>
+      </mat-select>
 
-      <button mat-raised-button (click)="generarQR()" color="primary" [disabled]="isFirstButtonDisabled">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add_box"></mat-icon>
-        Generar QR
-      </button>
-      &nbsp;
-      <button mat-raised-button (click)="limpiarQR()" color="accent" [disabled]="isSecondButtonDisabled">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
-        Limpiar QR
-      </button>
-    </div>
+      <br>
+      <br>
+
+      <div>
+
+        <button mat-raised-button (click)="generarQR()" color="primary" [disabled]="isFirstButtonDisabled">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add_box"></mat-icon>
+          Generar QR
+        </button>
+        &nbsp;
+        <button mat-raised-button (click)="limpiarQR()" color="accent" [disabled]="isSecondButtonDisabled">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+          Limpiar QR
+        </button>
+        
+      </div>
+
+    </mat-card-content>
 
   </mat-card>
 

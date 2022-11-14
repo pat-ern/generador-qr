@@ -9,7 +9,11 @@ import { Component, SimpleChanges } from '@angular/core';
 export class AppComponent{
 
   title = 'generador-qr';
-  cardTitle = 'Crea el código QR para tu clase';
+
+  cardTitle = 'Registrapp QR Generator';
+  cardSubtitle = 'Crea el código para registrar la asistencia de tus alumnos';
+
+  codigoBase = 'reg_app_cod';
   size = 300;
   qrInfo: any;
   selected: any;
@@ -62,7 +66,7 @@ export class AppComponent{
     if (this.selected == undefined) {
       alert('Debes seleccionar una asignatura');
     } else {
-      this.qrInfo = 'reg_app_cod*'+this.selected.codigo+'*'+this.selected.seccion;
+      this.qrInfo = this.selected.codigo; // this.codigoBase+'*'+ // +'*'+this.selected.seccion
       this.changeButtonsState(true, false);
     }
   }
