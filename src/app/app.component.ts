@@ -66,8 +66,9 @@ export class AppComponent{
     if (this.selected == undefined) {
       alert('Debes seleccionar una asignatura');
     } else {
-      this.qrInfo = this.selected.codigo; // this.codigoBase+'*'+ // +'*'+this.selected.seccion
+      this.qrInfo = this.codigoBase+'*'+this.selected.codigo+'*'+this.selected.seccion; // this.codigoBase+'*'+ // +'*'+this.selected.seccion
       this.changeButtonsState(true, false);
+      console.log(this.qrInfo);
     }
   }
 
